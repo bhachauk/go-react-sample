@@ -11,8 +11,6 @@
 To get started, clone the repository and run the following commands:
 
 ```bash
-To get started, clone the repository and run the following commands:
-```bash
 cd go-react-be
 make run
 ```
