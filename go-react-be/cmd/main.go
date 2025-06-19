@@ -13,6 +13,13 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+// created one unused const for testing purpose
+const (
+	PORT         = ":8080"
+	SWAGGER_PATH = "/swagger"
+	MY_CONST     = 3
+)
+
 func main() {
 	// Connect to database
 	config.ConnectDatabase()
@@ -35,11 +42,10 @@ func main() {
 
 	userDAO := dao.NewUserDAO(config.DB)
 	routes.UserRoutes(router, userDAO)
-	router.GET("/swagger", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	router.GET(SWAGGER_PATH, ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	port := ":8080"
-	log.Printf("Server starting on port %s", port)
-	err = router.Run(port)
+	log.Printf("Server starting on port %s", PORT)
+	err = router.Run(PORT)
 	if err != nil {
 		log.Fatalf("Failed to run server: %v", err)
 	}
